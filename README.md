@@ -1,6 +1,6 @@
 # sample-cf-workers-static
 
-方式検討（[infra](https://github.com/alphajinsei) の枠①：標準・静的）のサンプル。Markdown で書いた記事を Astro でビルドし、Cloudflare Workers Static Assets で配信する。
+方式検討（infra の枠①：標準・静的）のサンプル。Markdown で書いた記事を Astro でビルドし、Cloudflare Workers Static Assets で配信する。
 
 - 公開先：https://sample-cf-workers-static.alphajinsei.com
 - `wrangler.jsonc` に `main` はない（コードのない Worker）。リクエストはすべてエッジが `dist/` のファイルを返す
