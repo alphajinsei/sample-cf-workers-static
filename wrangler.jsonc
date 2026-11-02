@@ -1,0 +1,14 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "sample-cf-workers-static",
+	"compatibility_date": "2026-11-01",
+	// main は書かない：コードのない Worker。リクエストはすべてエッジが dist/ のファイルを返す
+	"assets": {
+		"directory": "./dist",
+		"not_found_handling": "404-page"
+	},
+	"routes": [
+		{ "pattern": "sample-cf-workers-static.alphajinsei.com", "custom_domain": true }
+	],
+	"workers_dev": false
+}

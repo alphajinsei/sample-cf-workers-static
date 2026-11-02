@@ -1,0 +1,21 @@
+---
+interface Props {
+	title: string;
+}
+const { title } = Astro.props;
+---
+
+<html lang="ja">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title} | sample-cf-workers-static</title>
+	</head>
+	<body>
+		<header><a href="/">sample-cf-workers-static</a></header>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
