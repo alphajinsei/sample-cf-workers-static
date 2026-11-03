@@ -1,15 +1,15 @@
 # sample-cf-workers-static
 
-枠①（標準・静的）のサンプル。Markdown で書いた記事を Astro でビルドし、Cloudflare Workers Static Assets（コードのない Worker）で配信する。
+方式①（標準・静的）のサンプル。Markdown で書いた記事を Astro でビルドし、Cloudflare Workers Static Assets（コードのない Worker）で配信する。
 
 - 公開先：https://sample-cf-workers-static.alphajinsei.com
-- 全体の方針と、どの枠でも共通の決まりごと：[サービス開発ガイド](https://github.com/alphajinsei/cf-infra-playbook/blob/main/docs/service-guide.md)（手元では `~/claude-sandbox/infra/docs/service-guide.md`）
+- 全体の方針と、どの方式でも共通の決まりごと：[サービス開発ガイド](https://github.com/alphajinsei/cf-infra-playbook/blob/main/docs/service-guide.md)（手元では `~/claude-sandbox/infra/docs/service-guide.md`）
 
-## 1. この枠の用途
+## 1. この方式の用途
 
 向いているもの：記事やページを表示するだけのサイト（Markdown のブログ、ドキュメント、ポートフォリオ）、ビルド済みの SPA。
 
-向いていないもの：データを保存するもの、ログインした人ごとに中身が変わるもの。これらは枠②。あとから API（問い合わせフォームなど）が欲しくなったら、`wrangler.jsonc` に `main` を足せば同じ Worker のまま②になる。
+向いていないもの：データを保存するもの、ログインした人ごとに中身が変わるもの。これらは方式②。あとから API（問い合わせフォームなど）が欲しくなったら、`wrangler.jsonc` に `main` を足せば同じ Worker のまま②になる。
 
 ## 2. 構成と主なファイル
 
@@ -28,7 +28,7 @@
 | `src/pages/index.astro` | トップ。`src/pages/posts/*.md` を日付の新しい順に並べる |
 | `src/pages/posts/*.md` | 記事。ファイル名が URL になる（`hello.md` → `/posts/hello`） |
 | `src/pages/404.astro` | 存在しないパスに返すページ |
-| `src/layouts/` | 全ページ共通の枠（`BaseLayout`）と、記事の枠（`PostLayout`） |
+| `src/layouts/` | 全ページ共通のレイアウト（`BaseLayout`）と、記事のレイアウト（`PostLayout`） |
 | `public/` | そのまま `dist/` にコピーされるファイル（favicon など） |
 | `dist/` | ビルドの出力。git 管理外 |
 
@@ -99,7 +99,7 @@ npm run deploy     # https://<name>.alphajinsei.com で公開
 - コミットの作者のメールアドレスを隠すなら、最初のコミットの前に `git config user.email <ID>+alphajinsei@users.noreply.github.com`。
 - 既存の Pages のサイトを移すときは、Pages のカスタムドメインを外してから `npm run deploy` する（同じホスト名を2か所に付けられない）。
 
-## 6. この枠の注意点
+## 6. この方式の注意点
 
 - **frontmatter の日付は引用符で囲む。**`date: 2026-11-03` だと YAML が日付型として読み、表示が `2026-11-03T00:00:00.000Z` になる。
 - **Astro の Cloudflare アダプターは入れない。**完全な静的サイトなら不要。入れると `main` のある Worker（SSR）になり、構成が変わる。
