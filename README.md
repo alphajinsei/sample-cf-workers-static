@@ -104,5 +104,5 @@ npm run deploy     # https://<name>.alphajinsei.com で公開
 - **frontmatter の日付は引用符で囲む。**`date: 2026-11-03` だと YAML が日付型として読み、表示が `2026-11-03T00:00:00.000Z` になる。
 - **Astro の Cloudflare アダプターは入れない。**完全な静的サイトなら不要。入れると `main` のある Worker（SSR）になり、構成が変わる。
 - **`build.format: 'file'` を外さない。**外すと `/posts/hello` が `/posts/hello/` に 307 でリダイレクトされる。
-- **公開はこの PC からだけ。**スマホや GitHub の画面で記事を書いても公開されない。必要になったら GitHub Actions を足す（[方式検討サマリ](https://github.com/alphajinsei/cf-infra-playbook/blob/main/docs/infra-design-summary.md) の CI/CD の章）。
+- **公開はこの PC からだけ。**スマホや GitHub の画面で記事を書いても公開されない。必要になったら GitHub Actions を足す（[方式検討：Cloudflare](https://github.com/alphajinsei/cf-infra-playbook/blob/main/docs/design/cloudflare.md) の CI/CD の章）。
 - **npm がインストールスクリプトを止めたという警告**（esbuild、workerd）が出るが、dev・preview・deploy は動く。
